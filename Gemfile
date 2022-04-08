@@ -56,3 +56,4 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'active_hash'
 gem 'devise'
+gem 'rspec-rails', '~> 4.0.0'
