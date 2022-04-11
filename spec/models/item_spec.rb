@@ -18,60 +18,60 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Image can't be blank")
       end
       it 'titleが空では出品できない' do
-        @item.title = ""
+        @item.title = ''
         @item.valid?
         expect(@item.errors.full_messages).to include("Title can't be blank")
       end
       it 'descriptionが空では出品できない' do
-        @item.description = ""
+        @item.description = ''
         @item.valid?
         expect(@item.errors.full_messages).to include("Description can't be blank")
       end
       it 'category_idが空では出品できない' do
-        @item.category_id = ""
+        @item.category_id = ''
         @item.valid?
         expect(@item.errors.full_messages).to include("Category can't be blank")
       end
       it 'condition_idが空では出品できない' do
-        @item.condition_id = ""
+        @item.condition_id = ''
         @item.valid?
         expect(@item.errors.full_messages).to include("Condition can't be blank")
       end
       it 'shipping_fee_idが空では出品できない' do
-        @item.shipping_fee_id = ""
+        @item.shipping_fee_id = ''
         @item.valid?
         expect(@item.errors.full_messages).to include("Shipping fee can't be blank")
       end
       it 'prefecture_idが空では出品できない' do
-        @item.prefecture_id = ""
+        @item.prefecture_id = ''
         @item.valid?
         expect(@item.errors.full_messages).to include("Prefecture can't be blank")
       end
       it 'shipping_day_idが空では出品できない' do
-        @item.shipping_day_id = ""
+        @item.shipping_day_id = ''
         @item.valid?
         expect(@item.errors.full_messages).to include("Shipping day can't be blank")
       end
       it 'priceが空では出品できない' do
-        @item.price = ""
+        @item.price = ''
         @item.valid?
         expect(@item.errors.full_messages).to include("Price can't be blank")
       end
       it 'priceが全角では出品できない' do
-        @item.price = "３０００"
+        @item.price = '３０００'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price is invalid. Input half-width characters")
+        expect(@item.errors.full_messages).to include('Price is invalid. Input half-width characters')
       end
       it 'priceが299以下では出品できない' do
         @item.price = 299
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price is out of setting range")
+        expect(@item.errors.full_messages).to include('Price is out of setting range')
       end
       it 'priceが10,000,000以上では出品できない' do
-        @item.price = 10000000
+        @item.price = 10_000_000
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price is out of setting range")
+        expect(@item.errors.full_messages).to include('Price is out of setting range')
       end
     end
   end
- end
+end
