@@ -8,4 +8,9 @@ class OrderAddress
     validates :city, :street, :user_id, :item_id
     validates :phone_number, format: { with: ^0\d{9,10}$, message: "is too short"}
   end
+  
+  def save
+    order = Order.create()
+    Address.create(zip_code: zip_code, prefecture_id: prefecture_id, city: city, street: street, building: building, phone_number: phone_number, user_id: uder.id, item_id: item.id)
+  end
 end
