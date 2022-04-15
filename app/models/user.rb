@@ -5,7 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :items
-  has_many :order
+  has_many :orders
 
   validates :nickname, :birthday, presence: true
   validates :password,
