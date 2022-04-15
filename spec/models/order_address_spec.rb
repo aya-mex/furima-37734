@@ -30,8 +30,8 @@ RSpec.describe OrderAddress, type: :model do
         @order_address.valid?
         expect(@order_address.errors.full_messages).to include('Zip code is invalid. Enter it as follows (e.g. 123-4567)')
       end
-      it 'prefecture_idを選択していないと保存できないこと' do
-        @order_address.prefecture_id = ''
+      it 'prefecture_idが1(「---」)では保存できない' do
+        @order_address.prefecture_id = '1'
         @order_address.valid?
         expect(@order_address.errors.full_messages).to include("Prefecture can't be blank")
       end
@@ -50,15 +50,25 @@ RSpec.describe OrderAddress, type: :model do
         @order_address.valid?
         expect(@order_address.errors.full_messages).to include("Phone number can't be blank")
       end
-      it 'phone_numberは10桁以上11桁以内の半角数値でないと保存できないこと' do
+      it 'phone_numberは9桁以下では保存できないこと' do
         @order_address.phone_number = '1111'
         @order_address.valid?
         expect(@order_address.errors.full_messages).to include('Phone number is too short')
       end
+      it 'phone_numberは12桁以上では保存できないこと' do
+        @order_address.phone_number = '111111111111'
+        @order_address.valid?
+        expect(@order_address.errors.full_messages).to include('Phone number is too short')
+      end
       it 'phone_numberはハイフンを含むと保存できないこと' do
-        @order_address.phone_number = '111-1111-1111'
+        @order_address.phone_number = '111-111-111'
         @order_address.valid?
         expect(@order_address.errors.full_messages).to include('Phone number is invalid. Input only number')
+      end
+      it 'phone_numberは数字のみでなければ保存できないこと' do
+        @order_address.phone_number = '111_111_111'
+        @order_address.valid?
+        expect(@order_address.errors.full_messages).to include('Phone number is too short')
       end
       it 'userが紐づいていないと保存できないこと' do
         @order_address.user_id = nil
